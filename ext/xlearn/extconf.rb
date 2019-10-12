@@ -11,13 +11,21 @@ dir = File.expand_path("../../vendor/xlearn", __dir__)
 
 arch = RbConfig::CONFIG["arch"]
 puts "Arch: #{arch}"
-make_prefix = arch =~ /mingw/ ? "ridk exec " : ""
-
-build_dir = "#{dir}/build"
-Dir.mkdir(build_dir)
-Dir.chdir(build_dir) do
-  run "cmake .."
-  run "#{make_prefix}make -j4"
+case arch
+when /mingw/
+  build_dir = "#{dir}/build"
+  Dir.mkdir(build_dir)
+  Dir.chdir(build_dir) do
+    run 'cmake -G "Visual Studio 15 Win64" ../ && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64'
+    run 'MSBuild xLearn.sln /p:Configuration=Release'
+  end
+else
+  build_dir = "#{dir}/build"
+  Dir.mkdir(build_dir)
+  Dir.chdir(build_dir) do
+    run "cmake .."
+    run "make -j4"
+  end
 end
 
 create_makefile("xlearn")
