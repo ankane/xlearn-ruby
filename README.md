@@ -124,7 +124,27 @@ model.predict("test.txt")
 model.cv("train.txt")
 ```
 
-[These formats](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html#choose-machine-learning-algorithm) are supported
+For linear models and factorization machines, use the `libsvm` format:
+
+```txt
+label index_1:value_1 index_2:value_2 ... index_n:value_n
+```
+
+> You can use commas instead of spaces for separators
+
+Or CSV:
+
+```txt
+label,value_1,value_2,...,value_n
+```
+
+For field-aware factorization machines, use the `libffm` format:
+
+```txt
+label field_1:index_1:value_1 field_2:index_2:value_2 ...
+```
+
+> You can also use commas instead of spaces for separators
 
 You can also write predictions directly to a file
 
