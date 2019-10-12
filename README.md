@@ -91,7 +91,7 @@ model.cv(x, y)
 Specify the number of folds
 
 ```ruby
-XLearn::Linear.new(fold: 5)
+model.cv(x, y, folds: 5)
 ```
 
 ## Data

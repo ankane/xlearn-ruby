@@ -59,7 +59,8 @@ module XLearn
       end
     end
 
-    def cv(x, y = nil)
+    def cv(x, y = nil, folds: nil)
+      set_params(fold: folds) if folds
       set_train_set(x, y)
       check_call FFI.XLearnCV(@handle)
     end
