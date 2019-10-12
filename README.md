@@ -10,7 +10,7 @@ Supports:
 - Factorization machines
 - Field-aware factorization machines
 
-[![Build Status](https://travis-ci.org/ankane/xlearn.svg?branch=master)](https://travis-ci.org/ankane/xlearn)
+[![Build Status](https://travis-ci.org/ankane/xlearn.svg?branch=master)](https://travis-ci.org/ankane/xlearn) [![Build status](https://ci.appveyor.com/api/projects/status/r7upg4073w7xct35/branch/master?svg=true)](https://ci.appveyor.com/project/ankane/xlearn/branch/master)
 
 ## Installation
 
