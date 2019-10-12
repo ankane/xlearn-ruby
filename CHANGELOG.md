@@ -2,7 +2,7 @@
 
 - Added `cv` method
 - Added `save_txt` method
-- Added support for Numo
+- Added support for Daru and Numo
 
 ## 0.1.0
 

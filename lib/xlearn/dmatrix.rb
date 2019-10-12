@@ -23,12 +23,13 @@ module XLearn
         flat_data = data.flatten
       end
 
-      c_data = ::FFI::MemoryPointer.new(:float, nrow * ncol)
+      c_data = ::FFI::MemoryPointer.new(:float, flat_data.size)
       c_data.put_array_of_float(0, flat_data)
 
       if label
-        c_label = ::FFI::MemoryPointer.new(:float, nrow)
-        c_label.put_array_of_float(0, label.to_a)
+        label = label.to_a
+        c_label = ::FFI::MemoryPointer.new(:float, label.size)
+        c_label.put_array_of_float(0, label)
       end
 
       # TODO support this
