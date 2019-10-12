@@ -1,10 +1,7 @@
 dist: xenial
 language: ruby
 rvm: 2.6.3
-before_install:
-  - export XLEARN_VERSION=0.4.4
-  - ./test/ci/install_xlearn.sh
-  - export LD_LIBRARY_PATH=$HOME/xlearn/$XLEARN_VERSION/build/lib:$LD_LIBRARY_PATH
+before_script: bundle exec ruby ext/xlearn/extconf.rb
 cache:
   bundler: true
   directories:
