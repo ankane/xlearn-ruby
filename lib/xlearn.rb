@@ -21,7 +21,9 @@ module XLearn
   class << self
     attr_accessor :ffi_lib
   end
-  self.ffi_lib = ["xlearn_api"]
+  lib_name = ::FFI.map_library_name("xlearn_api")
+  vendor_lib = File.expand_path("../vendor/xlearn/build/lib/#{lib_name}", __dir__)
+  self.ffi_lib = ["xlearn_api", vendor_lib]
 
   # friendlier error message
   autoload :FFI, "xlearn/ffi"
