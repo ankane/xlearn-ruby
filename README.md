@@ -68,8 +68,16 @@ model.save_txt("model.txt")
 
 ## Cross-Validation [master]
 
+Perform cross-validation
+
 ```ruby
 model.cv(x, y)
+```
+
+Specify the number of folds
+
+```ruby
+XLearn::Linear.new(fold: 5)
 ```
 
 ## Parameters
@@ -77,7 +85,7 @@ model.cv(x, y)
 Specify parameters
 
 ```ruby
-model = XLearn::FM.new(k: 20, epoch: 50)
+model = XLearn::Linear.new(k: 20, epoch: 50)
 ```
 
 Supports the same parameters as [Python](https://xlearn-doc.readthedocs.io/en/latest/all_api/index.html)

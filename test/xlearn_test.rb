@@ -18,7 +18,7 @@ class XLearnTest < Minitest::Test
   end
 
   def test_cv
-    model = XLearn::Linear.new(task: "reg")
+    model = XLearn::Linear.new(task: "reg", fold: 5)
     model.cv("test/data/boston/boston.csv")
   end
 
