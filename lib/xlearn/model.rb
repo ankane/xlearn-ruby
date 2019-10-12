@@ -85,7 +85,7 @@ module XLearn
       proc { FFI.XLearnHandleFree(pointer) }
     end
 
-    def self.remove_file(file)
+    def self.finalize_file(file)
       # must use proc instead of stabby lambda
       proc do
         file.close
@@ -128,7 +128,7 @@ module XLearn
 
     def create_tempfile
       file = Tempfile.new("xlearn")
-      ObjectSpace.define_finalizer(self, self.class.remove_file(file))
+      ObjectSpace.define_finalizer(self, self.class.finalize_file(file))
       file
     end
   end
