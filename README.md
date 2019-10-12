@@ -150,7 +150,7 @@ You can also specify the path to xLearn in an initializer:
 XLearn.ffi_lib << "/path/to/xlearn/lib/libxlearn_api.so"
 ```
 
-> Use `libxlearn_api.dylib` for Mac
+> Use `libxlearn_api.dylib` for Mac and `xlearn_api.dll` for Windows
 
 ## History
 
