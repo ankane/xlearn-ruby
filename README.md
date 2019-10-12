@@ -22,7 +22,7 @@ gem 'xlearn'
 
 ## Getting Started
 
-This library is modeled after the [Python Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html). Some methods are missing at the moment. PRs welcome!
+This library is modeled after the [Python Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html)
 
 Prep your data
 
