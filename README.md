@@ -130,7 +130,7 @@ For linear models and factorization machines, use the `libsvm` format:
 label index_1:value_1 index_2:value_2 ... index_n:value_n
 ```
 
-> You can use commas instead of spaces for separators
+> You can also use commas instead of spaces for separators
 
 Or CSV:
 
