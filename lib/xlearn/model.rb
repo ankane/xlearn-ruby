@@ -31,11 +31,10 @@ module XLearn
         end
       end
 
-      @txt_file = Tempfile.new("xlearn")
+      @txt_file = create_tempfile
       check_call FFI.XLearnSetTXTModel(@handle, @txt_file.path)
 
-      # TODO unlink in finalizer
-      @model_file = Tempfile.new("xlearn")
+      @model_file = create_tempfile
       check_call FFI.XLearnFit(@handle, @model_file.path)
     end
 
@@ -76,7 +75,7 @@ module XLearn
     end
 
     def load_model(path)
-      @model_file ||= Tempfile.new("xlearn")
+      @model_file ||= create_tempfile
       # TODO ensure tempfile is still cleaned up
       FileUtils.cp(path, @model_file.path)
     end
@@ -84,6 +83,14 @@ module XLearn
     def self.finalize(pointer)
       # must use proc instead of stabby lambda
       proc { FFI.XLearnHandleFree(pointer) }
+    end
+
+    def self.remove_file(file)
+      # must use proc instead of stabby lambda
+      proc do
+        file.close
+        file.unlink
+      end
     end
 
     private
@@ -117,6 +124,12 @@ module XLearn
           end
         check_call ret
       end
+    end
+
+    def create_tempfile
+      file = Tempfile.new("xlearn")
+      ObjectSpace.define_finalizer(self, self.class.remove_file(file))
+      file
     end
   end
 end
