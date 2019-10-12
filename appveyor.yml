@@ -2,10 +2,12 @@ environment:
   matrix:
     - RUBY_VERSION: "25-x64"
 
-image: Visual Studio 2017
+cache:
+  - vendor/bundle
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
+  - bundle config --local path vendor/bundle
   - bundle install
 
 build: off
