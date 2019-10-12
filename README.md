@@ -24,8 +24,6 @@ gem 'xlearn'
 
 ## Getting Started
 
-This library is modeled after the [Python Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html)
-
 Prep your data
 
 ```ruby
@@ -151,6 +149,10 @@ XLearn.ffi_lib << "/path/to/xlearn/lib/libxlearn_api.so"
 ```
 
 > Use `libxlearn_api.dylib` for Mac and `xlearn_api.dll` for Windows
+
+## Credits
+
+This library is modeled after xLearn’s [Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html).
 
 ## History
 
