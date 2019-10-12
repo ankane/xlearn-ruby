@@ -110,6 +110,8 @@ Or a Numo NArray
 Numo::DFloat.new(3, 2).seq
 ```
 
+## Performance
+
 For performance, you can read data directly from files
 
 ```ruby
