@@ -1,11 +1,9 @@
 dist: xenial
 language: ruby
 rvm: 2.6.3
-before_script: bundle exec ruby ext/xlearn/extconf.rb
 cache:
   bundler: true
-  directories:
-    - $HOME/xlearn
+before_script: bundle exec ruby ext/xlearn/extconf.rb
 script: bundle exec rake test
 notifications:
   email:
