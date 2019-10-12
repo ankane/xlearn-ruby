@@ -10,6 +10,8 @@ Supports:
 - Factorization machines
 - Field-aware factorization machines
 
+[![Build Status](https://travis-ci.org/ankane/xlearn.svg?branch=master)](https://travis-ci.org/ankane/xlearn)
+
 ## Installation
 
 First, [install xLearn](https://xlearn-doc.readthedocs.io/en/latest/install/index.html). On Mac, copy `build/lib/libxlearn_api.dylib` to `/usr/local/lib`.
