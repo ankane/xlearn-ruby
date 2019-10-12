@@ -118,7 +118,7 @@ Numo::DFloat.new(3, 2).seq
 
 ## Performance
 
-For performance, you can read data directly from files
+For large datasets, read data directly from files
 
 ```ruby
 model.fit("train.txt", eval_set: "validate.txt")
