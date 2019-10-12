@@ -90,7 +90,25 @@ Pass a validation set when fitting
 model.fit(x_train, y_train, eval_set: [x_val, y_val])
 ```
 
-## Performance
+## Data
+
+Data can be an array of arrays
+
+```ruby
+[[1, 2, 3], [4, 5, 6]]
+```
+
+Or a Daru data frame
+
+```ruby
+Daru::DataFrame.from_csv("houses.csv")
+```
+
+Or a Numo NArray
+
+```ruby
+Numo::DFloat.new(3, 2).seq
+```
 
 For performance, you can read data directly from files
 
