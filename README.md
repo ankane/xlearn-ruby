@@ -90,7 +90,7 @@ model.predict("test.txt")
 You can also write predictions directly to a file
 
 ```ruby
-model.predict("test.txt", out_file: "predictions.txt")
+model.predict("test.txt", out_path: "predictions.txt")
 ```
 
 ## History
