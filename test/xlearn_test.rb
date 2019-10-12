@@ -1,7 +1,7 @@
 require_relative "test_helper"
 
 class XLearnTest < Minitest::Test
-  def test_works
+  def test_linear
     x = [[1, 2], [3, 4], [5, 6], [7, 8]]
     y = [1, 2, 3, 4]
 
@@ -27,5 +27,14 @@ class XLearnTest < Minitest::Test
     model = XLearn::Linear.new(task: "reg")
     model.fit(path, eval_set: path)
     model.predict(path, out_path: "/tmp/output.txt")
+  end
+
+  def test_numo
+    x = Numo::DFloat.cast([[1, 2], [3, 4], [5, 6], [7, 8]])
+    y = Numo::DFloat.cast([1, 2, 3, 4])
+
+    model = XLearn::Linear.new(task: "reg")
+    model.fit(x, y, eval_set: [x, y])
+    assert_elements_in_delta y.to_a, model.predict(x), 0.1
   end
 end

@@ -6,6 +6,7 @@ before_install:
   - ./test/ci/install_xlearn.sh
   - export LD_LIBRARY_PATH=$HOME/xlearn/$XLEARN_VERSION/build/lib:$LD_LIBRARY_PATH
 cache:
+  bundler: true
   directories:
     - $HOME/xlearn
 script: bundle exec rake test
