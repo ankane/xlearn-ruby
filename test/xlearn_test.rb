@@ -7,13 +7,14 @@ class XLearnTest < Minitest::Test
 
     model = XLearn::Linear.new(task: "reg")
     model.fit(x, y, eval_set: [x, y])
-    assert_elements_in_delta y, model.predict(x), 0.05
+    assert_elements_in_delta y, model.predict(x), 0.1
 
     model.save_model("/tmp/model.bin")
+    model.save_txt("/tmp/model.txt")
 
     model2 = XLearn::Linear.new(task: "reg")
     model2.load_model("/tmp/model.bin")
-    assert_elements_in_delta y, model2.predict(x), 0.05
+    assert_elements_in_delta y, model2.predict(x), 0.1
   end
 
   def test_cv

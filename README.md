@@ -60,6 +60,18 @@ Load the model from a file
 model.load_model("model.bin")
 ```
 
+Save a text version of the model [master]
+
+```ruby
+model.save_txt("model.txt")
+```
+
+## Cross-Validation [master]
+
+```ruby
+model.cv(x, y)
+```
+
 ## Parameters
 
 Specify parameters
@@ -85,6 +97,7 @@ For performance, you can read data directly from files
 ```ruby
 model.fit("train.txt", eval_set: "validate.txt")
 model.predict("test.txt")
+model.cv("train.txt")
 ```
 
 [These formats](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html#choose-machine-learning-algorithm) are supported

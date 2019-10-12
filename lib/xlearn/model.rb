@@ -31,6 +31,9 @@ module XLearn
         end
       end
 
+      @txt_file = Tempfile.new("xlearn")
+      check_call FFI.XLearnSetTXTModel(@handle, @txt_file.path)
+
       # TODO unlink in finalizer
       @model_file = Tempfile.new("xlearn")
       check_call FFI.XLearnFit(@handle, @model_file.path)
@@ -58,13 +61,17 @@ module XLearn
 
     def cv(x, y = nil)
       set_train_set(x, y)
-
       check_call FFI.XLearnCV(@handle)
     end
 
     def save_model(path)
       raise Error, "Not trained" unless @model_file
       FileUtils.cp(@model_file.path, path)
+    end
+
+    def save_txt(path)
+      raise Error, "Not trained" unless @txt_file
+      FileUtils.cp(@txt_file.path, path)
     end
 
     def load_model(path)
