@@ -16,6 +16,7 @@ when /mingw/
   build_dir = "#{dir}/build"
   Dir.mkdir(build_dir)
   Dir.chdir(build_dir) do
+    # https://xlearn-doc.readthedocs.io/en/latest/install/install_windows.html
     run 'cmake -G "Visual Studio 15 Win64" ../ && "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64'
     run 'MSBuild xLearn.sln /p:Configuration=Release'
   end
