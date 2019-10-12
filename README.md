@@ -130,7 +130,7 @@ For linear models and factorization machines, use CSV:
 label,value_1,value_2,...,value_n
 ```
 
-Or the `libsvm` format:
+Or the `libsvm` format (better for sparse data):
 
 ```txt
 label index_1:value_1 index_2:value_2 ... index_n:value_n
