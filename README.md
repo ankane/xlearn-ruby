@@ -139,7 +139,7 @@ model.predict("test.txt", out_path: "predictions.txt")
 There’s an experimental branch that includes xLearn with the gem for easiest installation.
 
 ```ruby
-gem 'xlearn', github: 'ankane/xlearn', branch: 'vendor'
+gem 'xlearn', github: 'ankane/xlearn', branch: 'vendor', submodules: true
 ```
 
 Please file an issue if it doesn’t work for you.
