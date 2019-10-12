@@ -134,6 +134,24 @@ You can also write predictions directly to a file
 model.predict("test.txt", out_path: "predictions.txt")
 ```
 
+## xLearn Installation
+
+There’s an experimental branch that includes xLearn with the gem for easiest installation.
+
+```ruby
+gem 'xlearn', github: 'ankane/xlearn', branch: 'vendor'
+```
+
+Please file an issue if it doesn’t work for you.
+
+You can also specify the path to xLearn in an initializer:
+
+```ruby
+XLearn.ffi_lib << "/path/to/xlearn/lib/libxlearn_api.so"
+```
+
+> Use `libxlearn_api.dylib` for Mac
+
 ## History
 
 View the [changelog](https://github.com/ankane/xlearn/blob/master/CHANGELOG.md)
