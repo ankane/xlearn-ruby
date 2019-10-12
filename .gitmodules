@@ -1,0 +1,3 @@
+[submodule "vendor/xlearn"]
+	path = vendor/xlearn
+	url = https://github.com/aksnzhy/xlearn.git
