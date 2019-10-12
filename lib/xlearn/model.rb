@@ -20,14 +20,7 @@ module XLearn
     end
 
     def fit(x, y = nil, eval_set: nil)
-      if x.is_a?(String)
-        check_call FFI.XLearnSetTrain(@handle, x)
-        check_call FFI.XLearnSetBool(@handle, "from_file", true)
-      else
-        train_set = DMatrix.new(x, label: y)
-        check_call FFI.XLearnSetDMatrix(@handle, "train", train_set)
-        check_call FFI.XLearnSetBool(@handle, "from_file", false)
-      end
+      set_train_set(x, y)
 
       if eval_set
         if eval_set.is_a?(String)
@@ -63,6 +56,12 @@ module XLearn
       end
     end
 
+    def cv(x, y = nil)
+      set_train_set(x, y)
+
+      check_call FFI.XLearnCV(@handle)
+    end
+
     def save_model(path)
       raise Error, "Not trained" unless @model_file
       FileUtils.cp(@model_file.path, path)
@@ -80,6 +79,17 @@ module XLearn
     end
 
     private
+
+    def set_train_set(x, y)
+      if x.is_a?(String)
+        check_call FFI.XLearnSetTrain(@handle, x)
+        check_call FFI.XLearnSetBool(@handle, "from_file", true)
+      else
+        train_set = DMatrix.new(x, label: y)
+        check_call FFI.XLearnSetDMatrix(@handle, "train", train_set)
+        check_call FFI.XLearnSetBool(@handle, "from_file", false)
+      end
+    end
 
     def set_params(params)
       params.each do |k, v|

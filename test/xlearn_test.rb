@@ -16,6 +16,11 @@ class XLearnTest < Minitest::Test
     assert_elements_in_delta y, model2.predict(x), 0.05
   end
 
+  def test_cv
+    model = XLearn::Linear.new(task: "reg")
+    model.cv("test/data/boston/boston.csv")
+  end
+
   def test_files
     path = "test/data/boston/boston.csv"
     model = XLearn::Linear.new(task: "reg")
