@@ -20,6 +20,14 @@ module XLearn
     end
 
     def fit(x, y = nil, eval_set: nil)
+      @model_file = nil
+      partial_fit(x, y, eval_set: eval_set)
+    end
+
+    def partial_fit(x, y = nil, eval_set: nil)
+      pre_model = @model_file ? @model_file.path : ""
+      check_call FFI.XLearnSetPreModel(@handle, pre_model)
+
       set_train_set(x, y)
 
       if eval_set
@@ -36,13 +44,6 @@ module XLearn
 
       @model_file = create_tempfile
       check_call FFI.XLearnFit(@handle, @model_file.path)
-    end
-
-    def partial_fit(x, y = nil, eval_set: nil)
-      if @model_file
-        check_call FFI.XLearnSetPreModel(@handle, @model_file.path)
-      end
-      fit(x, y, eval_set: eval_set)
     end
 
     def predict(x, out_path: nil)
