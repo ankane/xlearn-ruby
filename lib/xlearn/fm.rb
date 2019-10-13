@@ -5,6 +5,8 @@ module XLearn
       super
     end
 
+    # shape is [i, k]
+    # for v_{i}
     def latent_factor
       factor = []
       read_txt do |line|
