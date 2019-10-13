@@ -38,6 +38,13 @@ module XLearn
       check_call FFI.XLearnFit(@handle, @model_file.path)
     end
 
+    def partial_fit(x, y = nil, eval_set: nil)
+      if @model_file
+        check_call FFI.XLearnSetPreModel(@handle, @model_file.path)
+      end
+      fit(x, y, eval_set: eval_set)
+    end
+
     def predict(x, out_path: nil)
       if x.is_a?(String)
         check_call FFI.XLearnSetTest(@handle, x)

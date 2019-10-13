@@ -18,6 +18,8 @@ class XLearnTest < Minitest::Test
     model2 = XLearn::Linear.new(task: "reg")
     model2.load_model("/tmp/linear.bin")
     assert_elements_in_delta y, model2.predict(x), 0.1
+
+    model.partial_fit(x, y)
   end
 
   def test_fm
