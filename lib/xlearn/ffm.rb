@@ -5,6 +5,8 @@ module XLearn
       super
     end
 
+    # shape is [i, j, k]
+    # for v_{i}_{j}
     def latent_factor
       factor = []
       current = -1
