@@ -39,10 +39,10 @@ module XLearn
         end
       end
 
-      @txt_file = create_tempfile
+      @txt_file ||= create_tempfile
       check_call FFI.XLearnSetTXTModel(@handle, @txt_file.path)
 
-      @model_file = create_tempfile
+      @model_file ||= create_tempfile
       check_call FFI.XLearnFit(@handle, @model_file.path)
     end
 
