@@ -70,6 +70,14 @@ Pass a validation set
 model.fit(x_train, y_train, eval_set: [x_val, y_val])
 ```
 
+Get the bias term, linear term, and latent factor [master]
+
+```ruby
+model.bias_term
+model.linear_term
+model.latent_factor # fm and ffm only
+```
+
 ## Parameters
 
 Specify parameters

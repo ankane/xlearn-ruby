@@ -80,6 +80,24 @@ module XLearn
       FileUtils.cp(path, @model_file.path)
     end
 
+    def bias_term
+      read_txt do |line|
+        return line.split(":").last.to_f if line.start_with?("bias:")
+      end
+    end
+
+    def linear_term
+      term = []
+      read_txt do |line|
+        if line.start_with?("i_")
+          term << line.split(":").last.to_f
+        elsif line.start_with?("v_")
+          break
+        end
+      end
+      term
+    end
+
     def self.finalize(pointer)
       # must use proc instead of stabby lambda
       proc { FFI.XLearnHandleFree(pointer) }
@@ -123,6 +141,14 @@ module XLearn
             raise ArgumentError, "Invalid parameter: #{k}"
           end
         check_call ret
+      end
+    end
+
+    def read_txt
+      if @txt_file
+        File.foreach(@txt_file.path) do |line|
+          yield line
+        end
       end
     end
 
