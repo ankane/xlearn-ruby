@@ -58,7 +58,7 @@ Load the model from a file
 model.load_model("model.bin")
 ```
 
-Save a text version of the model [master]
+Save a text version of the model
 
 ```ruby
 model.save_txt("model.txt")
@@ -70,13 +70,13 @@ Pass a validation set
 model.fit(x_train, y_train, eval_set: [x_val, y_val])
 ```
 
-Train online [master]
+Train online
 
 ```ruby
 model.partial_fit(x_train, y_train)
 ```
 
-Get the bias term, linear term, and latent factors [master]
+Get the bias term, linear term, and latent factors
 
 ```ruby
 model.bias_term
@@ -94,7 +94,7 @@ model = XLearn::Linear.new(k: 20, epoch: 50)
 
 Supports the same parameters as [Python](https://xlearn-doc.readthedocs.io/en/latest/all_api/index.html)
 
-## Cross-Validation [master]
+## Cross-Validation
 
 Cross-validation
 
