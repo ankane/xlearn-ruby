@@ -3,7 +3,7 @@
 - Added `cv` method
 - Added `partial_fit` method
 - Added `save_txt` method
-- Added `bias_term`, `linear_term`, and `latent_factor` methods
+- Added `bias_term`, `linear_term`, and `latent_factors` methods
 - Added support for Daru and Numo
 
 ## 0.1.0

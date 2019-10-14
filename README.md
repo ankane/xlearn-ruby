@@ -76,12 +76,12 @@ Train online [master]
 model.partial_fit(x_train, y_train)
 ```
 
-Get the bias term, linear term, and latent factor [master]
+Get the bias term, linear term, and latent factors [master]
 
 ```ruby
 model.bias_term
 model.linear_term
-model.latent_factor # fm and ffm only
+model.latent_factors # fm and ffm only
 ```
 
 ## Parameters

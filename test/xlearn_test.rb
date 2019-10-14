@@ -33,7 +33,7 @@ class XLearnTest < Minitest::Test
 
     assert model.bias_term
     assert model.linear_term
-    assert model.latent_factor
+    assert model.latent_factors
   end
 
   def test_ffm
@@ -47,7 +47,7 @@ class XLearnTest < Minitest::Test
 
     assert model.bias_term
     assert model.linear_term
-    assert model.latent_factor
+    assert model.latent_factors
   end
 
   def test_cv

@@ -7,7 +7,7 @@ module XLearn
 
     # shape is [i, k]
     # for v_{i}
-    def latent_factor
+    def latent_factors
       factor = []
       read_txt do |line|
         if line.start_with?("v_")

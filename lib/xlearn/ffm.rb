@@ -7,7 +7,7 @@ module XLearn
 
     # shape is [i, j, k]
     # for v_{i}_{j}
-    def latent_factor
+    def latent_factors
       factor = []
       current = -1
       read_txt do |line|
