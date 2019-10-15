@@ -1,3 +1,7 @@
+## 0.1.2 [unreleased]
+
+- Don't save `bin` file by default
+
 ## 0.1.1
 
 - Added `cv` method

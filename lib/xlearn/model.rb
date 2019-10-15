@@ -9,7 +9,8 @@ module XLearn
 
       options = {
         task: "binary",
-        quiet: true
+        quiet: true,
+        bin_out: false
       }.merge(options)
 
       if options[:task] == "binary" && !options.key?(:sigmoid)
