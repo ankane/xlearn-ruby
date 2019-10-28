@@ -9,7 +9,8 @@ module XLearn
 
       options = {
         task: "binary",
-        quiet: true
+        quiet: true,
+        bin_out: false
       }.merge(options)
 
       if options[:task] == "binary" && !options.key?(:sigmoid)
@@ -20,6 +21,13 @@ module XLearn
     end
 
     def fit(x, y = nil, eval_set: nil)
+      @model_path = nil
+      partial_fit(x, y, eval_set: eval_set)
+    end
+
+    def partial_fit(x, y = nil, eval_set: nil)
+      check_call FFI.XLearnSetPreModel(@handle, @model_path || "")
+
       set_train_set(x, y)
 
       if eval_set
@@ -31,12 +39,12 @@ module XLearn
         end
       end
 
-      @txt_file = Tempfile.new("xlearn")
+      @txt_file ||= create_tempfile
       check_call FFI.XLearnSetTXTModel(@handle, @txt_file.path)
 
-      # TODO unlink in finalizer
-      @model_file = Tempfile.new("xlearn")
+      @model_file ||= create_tempfile
       check_call FFI.XLearnFit(@handle, @model_file.path)
+      @model_path = @model_file.path
     end
 
     def predict(x, out_path: nil)
@@ -59,7 +67,8 @@ module XLearn
       end
     end
 
-    def cv(x, y = nil)
+    def cv(x, y = nil, folds: nil)
+      set_params(fold: folds) if folds
       set_train_set(x, y)
       check_call FFI.XLearnCV(@handle)
     end
@@ -75,14 +84,40 @@ module XLearn
     end
 
     def load_model(path)
-      @model_file ||= Tempfile.new("xlearn")
+      @model_file ||= create_tempfile
       # TODO ensure tempfile is still cleaned up
       FileUtils.cp(path, @model_file.path)
+    end
+
+    def bias_term
+      read_txt do |line|
+        return line.split(":").last.to_f if line.start_with?("bias:")
+      end
+    end
+
+    def linear_term
+      term = []
+      read_txt do |line|
+        if line.start_with?("i_")
+          term << line.split(":").last.to_f
+        elsif line.start_with?("v_")
+          break
+        end
+      end
+      term
     end
 
     def self.finalize(pointer)
       # must use proc instead of stabby lambda
       proc { FFI.XLearnHandleFree(pointer) }
+    end
+
+    def self.finalize_file(file)
+      # must use proc instead of stabby lambda
+      proc do
+        file.close
+        file.unlink
+      end
     end
 
     private
@@ -116,6 +151,20 @@ module XLearn
           end
         check_call ret
       end
+    end
+
+    def read_txt
+      if @txt_file
+        File.foreach(@txt_file.path) do |line|
+          yield line
+        end
+      end
+    end
+
+    def create_tempfile
+      file = Tempfile.new("xlearn")
+      ObjectSpace.define_finalizer(self, self.class.finalize_file(file))
+      file
     end
   end
 end

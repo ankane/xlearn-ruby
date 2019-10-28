@@ -24,8 +24,6 @@ gem 'xlearn'
 
 ## Getting Started
 
-This library is modeled after the [Python Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html)
-
 Prep your data
 
 ```ruby
@@ -60,7 +58,7 @@ Load the model from a file
 model.load_model("model.bin")
 ```
 
-Save a text version of the model [master]
+Save a text version of the model
 
 ```ruby
 model.save_txt("model.txt")
@@ -70,6 +68,20 @@ Pass a validation set
 
 ```ruby
 model.fit(x_train, y_train, eval_set: [x_val, y_val])
+```
+
+Train online
+
+```ruby
+model.partial_fit(x_train, y_train)
+```
+
+Get the bias term, linear term, and latent factors
+
+```ruby
+model.bias_term
+model.linear_term
+model.latent_factors # fm and ffm only
 ```
 
 ## Parameters
@@ -82,7 +94,7 @@ model = XLearn::Linear.new(k: 20, epoch: 50)
 
 Supports the same parameters as [Python](https://xlearn-doc.readthedocs.io/en/latest/all_api/index.html)
 
-## Cross-Validation [master]
+## Cross-Validation
 
 Cross-validation
 
@@ -93,7 +105,7 @@ model.cv(x, y)
 Specify the number of folds
 
 ```ruby
-XLearn::Linear.new(fold: 5)
+model.cv(x, y, folds: 5)
 ```
 
 ## Data
@@ -126,13 +138,55 @@ model.predict("test.txt")
 model.cv("train.txt")
 ```
 
-[These formats](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html#choose-machine-learning-algorithm) are supported
+For linear models and factorization machines, use CSV:
+
+```txt
+label,value_1,value_2,...,value_n
+```
+
+Or the `libsvm` format (better for sparse data):
+
+```txt
+label index_1:value_1 index_2:value_2 ... index_n:value_n
+```
+
+> You can also use commas instead of spaces for separators
+
+For field-aware factorization machines, use the `libffm` format:
+
+```txt
+label field_1:index_1:value_1 field_2:index_2:value_2 ...
+```
+
+> You can also use commas instead of spaces for separators
 
 You can also write predictions directly to a file
 
 ```ruby
 model.predict("test.txt", out_path: "predictions.txt")
 ```
+
+## xLearn Installation
+
+There’s an experimental branch that includes xLearn with the gem for easiest installation.
+
+```ruby
+gem 'xlearn', github: 'ankane/xlearn', branch: 'vendor', submodules: true
+```
+
+Please file an issue if it doesn’t work for you.
+
+You can also specify the path to xLearn in an initializer:
+
+```ruby
+XLearn.ffi_lib << "/path/to/xlearn/lib/libxlearn_api.so"
+```
+
+> Use `libxlearn_api.dylib` for Mac and `xlearn_api.dll` for Windows
+
+## Credits
+
+This library is modeled after xLearn’s [Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html).
 
 ## History
 

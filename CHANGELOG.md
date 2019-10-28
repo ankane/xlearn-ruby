@@ -1,7 +1,13 @@
-## 0.1.1 [unreleased]
+## 0.1.2 [unreleased]
+
+- Don't save `bin` file by default
+
+## 0.1.1
 
 - Added `cv` method
+- Added `partial_fit` method
 - Added `save_txt` method
+- Added `bias_term`, `linear_term`, and `latent_factors` methods
 - Added support for Daru and Numo
 
 ## 0.1.0
