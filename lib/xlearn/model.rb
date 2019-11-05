@@ -3,7 +3,7 @@ module XLearn
     include Utils
 
     def initialize(**options)
-      @handle = Fiddle::Pointer.malloc(1)
+      @handle = Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP)
       check_call FFI.XLearnCreate(@model_type, @handle)
       ObjectSpace.define_finalizer(self, self.class.finalize(@handle))
 
@@ -61,7 +61,7 @@ module XLearn
         check_call FFI.XLearnPredictForFile(@handle, @model_file.path, out_path)
       else
         length = Fiddle::Pointer.malloc(Fiddle::SIZEOF_LONG)
-        out_arr = Fiddle::Pointer.malloc(1)
+        out_arr = Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP)
         check_call FFI.XLearnPredictForMat(@handle, @model_file.path, length, out_arr)
         len = length.to_s(length.size).unpack1("L")
         out_arr.ptr.to_s(len * Fiddle::SIZEOF_FLOAT).unpack("e*")

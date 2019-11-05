@@ -3,7 +3,7 @@ module XLearn
     include Utils
 
     def initialize(data, label: nil)
-      @handle = Fiddle::Pointer.malloc(1)
+      @handle = Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP)
 
       if matrix?(data)
         nrow = data.row_count
