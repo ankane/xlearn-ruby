@@ -13,9 +13,7 @@ module XLearn
     # keep same order
 
     typealias "bool", "int"
-
     typealias "index_t", "unsigned int"
-
     typealias "XL", "void*"
     typealias "DataHandle", "void*"
 
