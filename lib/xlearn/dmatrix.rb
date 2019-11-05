@@ -23,11 +23,11 @@ module XLearn
         flat_data = data.flatten
       end
 
-      c_data = Fiddle::Pointer[flat_data.pack("e*")]
+      c_data = Fiddle::Pointer[flat_data.pack("f*")]
 
       if label
         label = label.to_a
-        c_label = Fiddle::Pointer[label.pack("e*")]
+        c_label = Fiddle::Pointer[label.pack("f*")]
       end
 
       # TODO support this

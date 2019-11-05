@@ -63,8 +63,8 @@ module XLearn
         length = Fiddle::Pointer.malloc(Fiddle::SIZEOF_LONG)
         out_arr = Fiddle::Pointer.malloc(Fiddle::SIZEOF_VOIDP)
         check_call FFI.XLearnPredictForMat(@handle, @model_file.path, length, out_arr)
-        len = length.to_s(length.size).unpack1("L")
-        out_arr.ptr.to_s(len * Fiddle::SIZEOF_FLOAT).unpack("e*")
+        len = length[0, length.size].unpack1("L")
+        out_arr.ptr[0, len * Fiddle::SIZEOF_FLOAT].unpack("f*")
       end
     end
 
