@@ -3,7 +3,7 @@ module XLearn
     include Utils
 
     def initialize(**options)
-      @handle = ::FFI::MemoryPointer.new(:pointer)
+      @handle = Fiddle::Pointer.malloc(1)
       check_call FFI.XLearnCreate(@model_type, @handle)
       ObjectSpace.define_finalizer(self, self.class.finalize(@handle))
 
@@ -50,20 +50,21 @@ module XLearn
     def predict(x, out_path: nil)
       if x.is_a?(String)
         check_call FFI.XLearnSetTest(@handle, x)
-        check_call FFI.XLearnSetBool(@handle, "from_file", true)
+        check_call FFI.XLearnSetBool(@handle, "from_file", 1)
       else
         test_set = DMatrix.new(x)
         check_call FFI.XLearnSetDMatrix(@handle, "test", test_set)
-        check_call FFI.XLearnSetBool(@handle, "from_file", false)
+        check_call FFI.XLearnSetBool(@handle, "from_file", 0)
       end
 
       if out_path
         check_call FFI.XLearnPredictForFile(@handle, @model_file.path, out_path)
       else
-        length = ::FFI::MemoryPointer.new(:uint64)
-        out_arr = ::FFI::MemoryPointer.new(:pointer)
+        length = Fiddle::Pointer.malloc(Fiddle::SIZEOF_LONG)
+        out_arr = Fiddle::Pointer.malloc(1)
         check_call FFI.XLearnPredictForMat(@handle, @model_file.path, length, out_arr)
-        out_arr.read_pointer.read_array_of_float(length.read_uint64)
+        len = length.to_s(length.size).unpack1("L")
+        out_arr.ptr.to_s(len * Fiddle::SIZEOF_FLOAT).unpack("e*")
       end
     end
 
@@ -125,11 +126,11 @@ module XLearn
     def set_train_set(x, y)
       if x.is_a?(String)
         check_call FFI.XLearnSetTrain(@handle, x)
-        check_call FFI.XLearnSetBool(@handle, "from_file", true)
+        check_call FFI.XLearnSetBool(@handle, "from_file", 1)
       else
         train_set = DMatrix.new(x, label: y)
         check_call FFI.XLearnSetDMatrix(@handle, "train", train_set)
-        check_call FFI.XLearnSetBool(@handle, "from_file", false)
+        check_call FFI.XLearnSetBool(@handle, "from_file", 0)
       end
     end
 
@@ -145,7 +146,7 @@ module XLearn
           when "k", "epoch", "fold", "nthread", "block_size", "stop_window", "seed"
             FFI.XLearnSetInt(@handle, k, v)
           when "quiet", "on_disk", "bin_out", "norm", "lock_free", "early_stop", "sign", "sigmoid"
-            FFI.XLearnSetBool(@handle, k, v)
+            FFI.XLearnSetBool(@handle, k, v ? 1 : 0)
           else
             raise ArgumentError, "Invalid parameter: #{k}"
           end

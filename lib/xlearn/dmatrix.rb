@@ -3,7 +3,7 @@ module XLearn
     include Utils
 
     def initialize(data, label: nil)
-      @handle = ::FFI::MemoryPointer.new(:pointer)
+      @handle = Fiddle::Pointer.malloc(1)
 
       if matrix?(data)
         nrow = data.row_count
@@ -23,13 +23,11 @@ module XLearn
         flat_data = data.flatten
       end
 
-      c_data = ::FFI::MemoryPointer.new(:float, flat_data.size)
-      c_data.put_array_of_float(0, flat_data)
+      c_data = Fiddle::Pointer[flat_data.pack("e*")]
 
       if label
         label = label.to_a
-        c_label = ::FFI::MemoryPointer.new(:float, label.size)
-        c_label.put_array_of_float(0, label)
+        c_label = Fiddle::Pointer[label.pack("e*")]
       end
 
       # TODO support this
