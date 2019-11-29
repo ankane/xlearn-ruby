@@ -1,5 +1,6 @@
-## 0.1.2 [unreleased]
+## 0.1.2 (unreleased)
 
+- Changed to Apache 2.0 license to match xLearn
 - Don't save `bin` file by default
 
 ## 0.1.1 (2019-10-13)
