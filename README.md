@@ -14,7 +14,11 @@ Supports:
 
 ## Installation
 
-First, [install xLearn](https://xlearn-doc.readthedocs.io/en/latest/install/index.html). On Mac, copy `build/lib/libxlearn_api.dylib` to `/usr/local/lib`.
+First, [install xLearn](https://xlearn-doc.readthedocs.io/en/latest/install/index.html). For Homebrew, use:
+
+```sh
+brew install xlearn
+```
 
 Add this line to your application’s Gemfile:
 
