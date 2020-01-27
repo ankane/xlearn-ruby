@@ -3,7 +3,7 @@ require_relative "lib/xlearn/version"
 Gem::Specification.new do |spec|
   spec.name          = "xlearn"
   spec.version       = XLearn::VERSION
-  spec.summary       = "xLearn - the high performance machine learning library - for Ruby"
+  spec.summary       = "High performance factorization machines for Ruby"
   spec.homepage      = "https://github.com/ankane/xlearn"
   spec.license       = "Apache-2.0"
 
@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "minitest", ">= 5"
   spec.add_development_dependency "daru"
-  spec.add_development_dependency "numo-narray"
+  spec.add_development_dependency "numo-narray" unless ENV["APPVEYOR"]
 end

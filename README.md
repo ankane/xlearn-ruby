@@ -2,8 +2,6 @@
 
 [xLearn](https://github.com/aksnzhy/xlearn) - the high performance machine learning library - for Ruby
 
-:fire: Uses the C API for blazing performance
-
 Supports:
 
 - Linear models
@@ -13,12 +11,6 @@ Supports:
 [![Build Status](https://travis-ci.org/ankane/xlearn.svg?branch=master)](https://travis-ci.org/ankane/xlearn)
 
 ## Installation
-
-First, [install xLearn](https://xlearn-doc.readthedocs.io/en/latest/install/index.html). For Homebrew, use:
-
-```sh
-brew install xlearn
-```
 
 Add this line to your application’s Gemfile:
 
@@ -170,24 +162,6 @@ You can also write predictions directly to a file
 model.predict("test.txt", out_path: "predictions.txt")
 ```
 
-## xLearn Installation
-
-There’s an experimental branch that includes xLearn with the gem for easiest installation.
-
-```ruby
-gem 'xlearn', github: 'ankane/xlearn', branch: 'vendor', submodules: true
-```
-
-Please file an issue if it doesn’t work for you.
-
-You can also specify the path to xLearn in an initializer:
-
-```ruby
-XLearn.ffi_lib << "/path/to/xlearn/lib/libxlearn_api.so"
-```
-
-> Use `libxlearn_api.dylib` for Mac and `xlearn_api.dll` for Windows
-
 ## Credits
 
 This library is modeled after xLearn’s [Scikit-learn API](https://xlearn-doc.readthedocs.io/en/latest/python_api/index.html).
@@ -211,5 +185,6 @@ To get started with development and testing:
 git clone https://github.com/ankane/xlearn.git
 cd xlearn
 bundle install
+bundle exec rake vendor:all
 bundle exec rake test
 ```

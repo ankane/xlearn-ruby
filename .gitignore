@@ -9,3 +9,6 @@
 *.lock
 *.bin
 *.csv_*
+*.so
+*.dylib
+*.dll
