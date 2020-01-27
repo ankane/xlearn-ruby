@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.1.2 (2020-01-26)
 
 - Changed to Apache 2.0 license to match xLearn
 - Added shared libraries
