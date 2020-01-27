@@ -82,13 +82,26 @@ model.latent_factors # fm and ffm only
 
 ## Parameters
 
-Specify parameters
+Defaults shown below
 
 ```ruby
-model = XLearn::Linear.new(k: 20, epoch: 50)
+XLearn::FM.new(
+  task: "binary",      # binary (classification), reg (regression)
+  metric: nil,         # acc, prec, recall, f1, auc, mae, mape, rmse, rmsd
+  lr: 0.2,             # learning rate
+  lambda: 0.00002,     # lambda for l2 regularization
+  k: 4,                # latent factors for fm and ffm
+  alpha: 0.3,          # hyper parameter for ftrl
+  beta: 1.0,           # hyper parameter for ftrl
+  lambda_1: 0.00001,   # hyper parameter for ftrl
+  lambda_2: 0.00002,   # hyper parameter for ftrl
+  epoch: 10,           # number of epochs
+  fold: 3,             # number of folds
+  opt: "adagrad",      # sgd, adagrad, ftrl
+  stop_window: 2,      # size of stop window for early stopping
+  block_size: 500      # block size for on-disk training in MB
+)
 ```
-
-Supports the same parameters as [Python](https://xlearn-doc.readthedocs.io/en/latest/all_api/index.html)
 
 ## Cross-Validation
 
