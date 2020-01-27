@@ -82,7 +82,7 @@ model.latent_factors # fm and ffm only
 
 ## Parameters
 
-Defaults shown below
+Pass parameters - default values below
 
 ```ruby
 XLearn::FM.new(
