@@ -98,8 +98,12 @@ XLearn::FM.new(
   epoch: 10,           # number of epochs
   fold: 3,             # number of folds
   opt: "adagrad",      # sgd, adagrad, ftrl
+  block_size: 500,     # block size for on-disk training in MB
+  early_stop: true,    # use early stopping
   stop_window: 2,      # size of stop window for early stopping
-  block_size: 500      # block size for on-disk training in MB
+  sign: false,         # convert predition output to 0 and 1
+  sigmoid: false,      # convert predition output using sigmoid
+  seed: 1              # random seed to shuffle data set
 )
 ```
 
