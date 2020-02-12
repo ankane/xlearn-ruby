@@ -1,4 +1,4 @@
-## 0.1.4 (unreleased)
+## 0.1.4 (2020-02-11)
 
 - Fixed `Could not find xLearn` error on some Linux platforms
 
