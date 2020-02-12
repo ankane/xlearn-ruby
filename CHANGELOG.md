@@ -1,3 +1,7 @@
+## 0.1.4 (unreleased)
+
+- Fixed `Could not find xLearn` error on some Linux platforms
+
 ## 0.1.3 (2020-02-09)
 
 - Fixed illegal instruction error on some Linux platforms

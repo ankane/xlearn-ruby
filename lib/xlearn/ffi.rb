@@ -2,12 +2,7 @@ module XLearn
   module FFI
     extend ::FFI::Library
 
-    begin
-      ffi_lib XLearn.ffi_lib
-    rescue LoadError => e
-      raise e if ENV["XLEARN_DEBUG"]
-      raise LoadError, "Could not find xLearn"
-    end
+    ffi_lib XLearn.ffi_lib
 
     # https://github.com/aksnzhy/xlearn/blob/master/src/c_api/c_api.h
     # keep same order
