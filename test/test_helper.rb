@@ -4,6 +4,7 @@ require "minitest/autorun"
 require "minitest/pride"
 require "daru"
 require "matrix"
+require "numo/narray"
 
 class Minitest::Test
   def assert_elements_in_delta(expected, actual, delta = 0.001)
