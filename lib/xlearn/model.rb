@@ -10,32 +10,13 @@ module XLearn
       options = {
         task: "binary",
         quiet: true,
-        bin_out: false,
-        model_type: "fm",
-        task: "binary",
-        metric: "auc",
-        block_size: 500,
-        lr: 0.2,
-        k: 4,
-        reg_lambda: 0.1,
-        init: 0.1,
-        fold: 1,
-        epoch: 5,
-        stop_window: 2,
-        opt: "sgd",
-        n_jobs: 4,
-        alpha: 1,
-        beta: 1,
-        lambda_1: 1,
-        lambda_2: 1,
-        seed: 1
+        bin_out: false
       }.merge(options)
 
       if options[:task] == "binary" && !options.key?(:sigmoid)
         options[:sigmoid] = true
       end
 
-      options = {'alpha': 1, 'beta': 1, 'block_size': 500, 'epoch': 5, 'fold': 1, 'init': 0.1, 'k': 4, 'lambda_1': 1, 'lambda_2': 1, 'lr': 0.2, 'metric': 'auc', 'nthread': 1, 'opt': 'sgd', 'seed': 1, 'stop_window': 2, 'task': 'reg', 'lambda': 0.1}
       set_params(options)
     end
 
