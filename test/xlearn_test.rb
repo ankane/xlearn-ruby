@@ -63,6 +63,8 @@ class XLearnTest < Minitest::Test
   end
 
   def test_matrix
+    require "matrix"
+
     x = Matrix[[1, 2], [3, 4], [5, 6], [7, 8]]
     y = Vector.elements([1, 2, 3, 4])
 
@@ -72,6 +74,8 @@ class XLearnTest < Minitest::Test
   end
 
   def test_numo
+    require "numo/narray"
+
     x = Numo::DFloat.cast([[1, 2], [3, 4], [5, 6], [7, 8]])
     y = Numo::DFloat.cast([1, 2, 3, 4])
 
@@ -81,8 +85,21 @@ class XLearnTest < Minitest::Test
   end
 
   def test_daru
+    require "daru"
+
     x = Daru::DataFrame.new(x1: [1, 3, 5, 7], x2: [2, 4, 6, 8])
     y = Daru::Vector.new([1, 2, 3, 4])
+
+    model = XLearn::Linear.new(task: "reg")
+    model.fit(x, y, eval_set: [x, y])
+    assert_elements_in_delta y, model.predict(x), 0.1
+  end
+
+  def test_rover
+    require "rover"
+
+    x = Rover::DataFrame.new(x1: [1, 3, 5, 7], x2: [2, 4, 6, 8])
+    y = Rover::Vector.new([1, 2, 3, 4])
 
     model = XLearn::Linear.new(task: "reg")
     model.fit(x, y, eval_set: [x, y])

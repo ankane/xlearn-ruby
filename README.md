@@ -129,16 +129,22 @@ Data can be an array of arrays
 [[1, 2, 3], [4, 5, 6]]
 ```
 
+Or a Numo array
+
+```ruby
+Numo::NArray.cast([[1, 2, 3], [4, 5, 6]])
+```
+
+Or a Rover data frame [master]
+
+```ruby
+Rover.read_csv("houses.csv")
+```
+
 Or a Daru data frame
 
 ```ruby
 Daru::DataFrame.from_csv("houses.csv")
-```
-
-Or a Numo NArray
-
-```ruby
-Numo::DFloat.new(3, 2).seq
 ```
 
 ## Performance

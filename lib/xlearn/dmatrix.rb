@@ -12,6 +12,9 @@ module XLearn
       elsif daru?(data)
         nrow, ncol = data.shape
         flat_data = data.map_rows(&:to_a).flatten
+      elsif rover?(data)
+        nrow, ncol = data.shape
+        flat_data = data.each_row.map(&:values).flatten
       elsif narray?(data)
         nrow, ncol = data.shape
         # TODO convert to SFloat and pass pointer
@@ -60,6 +63,10 @@ module XLearn
 
     def narray?(data)
       defined?(Numo::NArray) && data.is_a?(Numo::NArray)
+    end
+
+    def rover?(data)
+      defined?(Rover::DataFrame) && data.is_a?(Rover::DataFrame)
     end
   end
 end
