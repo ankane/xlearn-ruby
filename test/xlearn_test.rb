@@ -1,6 +1,13 @@
 require_relative "test_helper"
 
 class XLearnTest < Minitest::Test
+  def setup
+    delete_file("data.csv.bin")
+    5.times do |i|
+      delete_file("data.csv_#{i}")
+    end
+  end
+
   def test_linear
     x = [[1, 2], [3, 4], [5, 6], [7, 8]]
     y = [1, 2, 3, 4]
@@ -67,7 +74,7 @@ class XLearnTest < Minitest::Test
     model = XLearn::FM.new(task: "reg", nthread: 1)
     model.fit(path)
     predictions = model.predict(path)
-    expected = [1.1039080619812012, 1.1834566593170166, 1.1569855213165283, 1.2837631702423096, 1.2105363607406616]
+    expected = [1.1082674264907837, 1.1844079494476318, 1.159830093383789, 1.2840240001678467, 1.2095973491668701]
     assert_elements_in_delta expected, predictions.first(5)
   end
 
@@ -102,5 +109,10 @@ class XLearnTest < Minitest::Test
 
   def temp_path(path)
     "#{Dir.tmpdir}/#{path}"
+  end
+
+  def delete_file(name)
+    path = "test/support/#{name}"
+    File.unlink(path) if File.exist?(path)
   end
 end
