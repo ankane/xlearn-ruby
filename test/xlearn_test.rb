@@ -55,6 +55,14 @@ class XLearnTest < Minitest::Test
     model.cv("test/support/data.csv")
   end
 
+  def test_not_fit
+    model = XLearn::Linear.new(task: "reg")
+    error = assert_raises do
+      model.predict("test/support/data.csv")
+    end
+    assert_equal "Not fit", error.message
+  end
+
   def test_files
     path = "test/support/data.csv"
     model = XLearn::Linear.new(task: "reg")

@@ -48,6 +48,8 @@ module XLearn
     end
 
     def predict(x, out_path: nil)
+      raise "Not fit" unless @model_file
+
       if x.is_a?(String)
         check_call FFI.XLearnSetTest(@handle, x)
         check_call FFI.XLearnSetBool(@handle, "from_file", true)
