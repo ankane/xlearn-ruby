@@ -1,13 +1,6 @@
 require_relative "test_helper"
 
 class XLearnTest < Minitest::Test
-  def setup
-    delete_file("data.csv.bin")
-    5.times do |i|
-      delete_file("data.csv_#{i}")
-    end
-  end
-
   def test_linear
     x = [[1, 2], [3, 4], [5, 6], [7, 8]]
     y = [1, 2, 3, 4]
@@ -111,6 +104,13 @@ class XLearnTest < Minitest::Test
     model = XLearn::Linear.new(task: "reg")
     model.fit(x, y, eval_set: [x, y])
     assert_elements_in_delta y, model.predict(x), 0.1
+  end
+
+  def teardown
+    delete_file("data.csv.bin")
+    5.times do |i|
+      delete_file("data.csv_#{i}")
+    end
   end
 
   private
