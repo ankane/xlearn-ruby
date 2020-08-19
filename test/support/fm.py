@@ -8,6 +8,7 @@ y = df['y']
 
 model = xl.FMModel(task='reg', nthread=1, opt='adagrad')
 model.fit(X, y)
+print('weights', model.weights)
 print('predict', model.predict(X)[0:6].tolist())
 
 model = xl.FMModel(task='reg', nthread=1, opt='adagrad')
