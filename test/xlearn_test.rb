@@ -52,22 +52,37 @@ class XLearnTest < Minitest::Test
 
   def test_cv
     model = XLearn::Linear.new(task: "reg", fold: 5)
-    model.cv("test/support/data.csv")
+    model.cv(data_path)
   end
 
-  def test_not_fit
+  def test_predict_not_fit
     model = XLearn::Linear.new(task: "reg")
-    error = assert_raises do
-      model.predict("test/support/data.csv")
+    error = assert_raises(XLearn::Error) do
+      model.predict(data_path)
     end
-    assert_equal "Not fit", error.message
+    assert_equal "Not trained", error.message
+  end
+
+  def test_save_model_not_fit
+    model = XLearn::Linear.new(task: "reg")
+    error = assert_raises(XLearn::Error) do
+      model.save_model("model.bin")
+    end
+    assert_equal "Not trained", error.message
+  end
+
+  def test_save_txt_not_fit
+    model = XLearn::Linear.new(task: "reg")
+    error = assert_raises(XLearn::Error) do
+      model.save_txt("model.txt")
+    end
+    assert_equal "Not trained", error.message
   end
 
   def test_files
-    path = "test/support/data.csv"
     model = XLearn::Linear.new(task: "reg")
-    model.fit(path, eval_set: path)
-    model.predict(path, out_path: temp_path("output.txt"))
+    model.fit(data_path, eval_set: data_path)
+    model.predict(data_path, out_path: temp_path("output.txt"))
   end
 
   def test_matrix
@@ -106,7 +121,7 @@ class XLearnTest < Minitest::Test
   def test_rover
     require "rover"
 
-    x = Rover.read_csv("test/support/data.csv", headers: %w(y x0 x1 x2 x3))
+    x = Rover.read_csv(data_path, headers: %w(y x0 x1 x2 x3))
     y = x.delete("y")
 
     model = XLearn::Linear.new(task: "reg")
@@ -123,6 +138,10 @@ class XLearnTest < Minitest::Test
   end
 
   private
+
+  def data_path
+    "test/support/data.csv"
+  end
 
   def temp_path(path)
     "#{Dir.tmpdir}/#{path}"
