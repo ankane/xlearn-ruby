@@ -1,7 +1,15 @@
 import xlearn as xl
+import pandas as pd
 
-# install xlearn from source for latest version
+df = pd.read_csv('test/support/data.csv', sep=' ', names=['y', 'x0', 'x1', 'x2', 'x3'])
 
-model = xl.FMModel(task="reg", nthread=1, opt="adagrad")
-model.fit("test/support/data.csv")
-print(model.predict("test/support/data.csv")[:5].tolist())
+X = df.drop(columns=['y'])
+y = df['y']
+
+model = xl.FMModel(task='reg', nthread=1, opt='adagrad')
+model.fit(X, y)
+print('predict', model.predict(X)[0:6].tolist())
+
+model = xl.FMModel(task='reg', nthread=1, opt='adagrad')
+model.fit('test/support/data.csv')
+print('predict', model.predict('test/support/data.csv')[0:6].tolist())
