@@ -1,6 +1,13 @@
 require_relative "test_helper"
 
 class XLearnTest < Minitest::Test
+  def setup
+    delete_file("data.csv.bin")
+    5.times do |i|
+      delete_file("data.csv_#{i}")
+    end
+  end
+
   def test_linear
     x = [[1, 2], [3, 4], [5, 6], [7, 8]]
     y = [1, 2, 3, 4]
@@ -110,5 +117,10 @@ class XLearnTest < Minitest::Test
 
   def temp_path(path)
     "#{Dir.tmpdir}/#{path}"
+  end
+
+  def delete_file(name)
+    path = "test/support/#{name}"
+    File.unlink(path) if File.exist?(path)
   end
 end
