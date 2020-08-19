@@ -18,7 +18,7 @@ module XLearn
         fold: 1,
         epoch: 5,
         stop_window: 2,
-        opt: "sgd",
+        # opt: "sgd",
         nthread: 4,
         alpha: 1,
         beta: 1,

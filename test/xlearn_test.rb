@@ -69,12 +69,21 @@ class XLearnTest < Minitest::Test
     model.predict(path, out_path: temp_path("output.txt"))
   end
 
-  def test_files_fm
+  def test_result_linear
+    path = "test/support/data.csv"
+    model = XLearn::Linear.new(task: "reg", nthread: 1)
+    model.fit(path)
+    predictions = model.predict(path)
+    expected = [0.9222735166549683, 0.8694016933441162, 0.7055330276489258, 0.5149608850479126, 0.6284207701683044]
+    assert_elements_in_delta expected, predictions.first(5)
+  end
+
+  def test_result_fm
     path = "test/support/data.csv"
     model = XLearn::FM.new(task: "reg", nthread: 1)
     model.fit(path)
     predictions = model.predict(path)
-    expected = [1.1082674264907837, 1.1844079494476318, 1.159830093383789, 1.2840240001678467, 1.2095973491668701]
+    expected = [1.026936650276184, 1.0957672595977783, 1.0505752563476562, 1.1147269010543823, 1.0406986474990845]
     assert_elements_in_delta expected, predictions.first(5)
   end
 
