@@ -52,11 +52,11 @@ class XLearnTest < Minitest::Test
 
   def test_cv
     model = XLearn::Linear.new(task: "reg", fold: 5)
-    model.cv("test/data/boston/boston.csv")
+    model.cv("test/support/data.csv")
   end
 
   def test_files
-    path = "test/data/boston/boston.csv"
+    path = "test/support/data.csv"
     model = XLearn::Linear.new(task: "reg")
     model.fit(path, eval_set: path)
     model.predict(path, out_path: temp_path("output.txt"))
