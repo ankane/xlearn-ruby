@@ -62,6 +62,15 @@ class XLearnTest < Minitest::Test
     model.predict(path, out_path: temp_path("output.txt"))
   end
 
+  def test_files_fm
+    path = "test/support/data.csv"
+    model = XLearn::FM.new(task: "reg", nthread: 1)
+    model.fit(path)
+    predictions = model.predict(path)
+    expected = [1.1039080619812012, 1.1834566593170166, 1.1569855213165283, 1.2837631702423096, 1.2105363607406616]
+    assert_elements_in_delta expected, predictions.first(5)
+  end
+
   def test_matrix
     x = Matrix[[1, 2], [3, 4], [5, 6], [7, 8]]
     y = Vector.elements([1, 2, 3, 4])
