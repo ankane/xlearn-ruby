@@ -79,6 +79,14 @@ class XLearnTest < Minitest::Test
     assert_equal "Not trained", error.message
   end
 
+  def test_bad_opt
+    model = XLearn::Linear.new(opt: "bad")
+
+    skip "Exits program"
+
+    model.fit(data_path)
+  end
+
   def test_files
     model = XLearn::Linear.new(task: "reg")
     model.fit(data_path, eval_set: data_path)
