@@ -98,12 +98,13 @@ class XLearnTest < Minitest::Test
   def test_rover
     require "rover"
 
-    x = Rover::DataFrame.new(x1: [1, 3, 5, 7], x2: [2, 4, 6, 8])
-    y = Rover::Vector.new([1, 2, 3, 4])
+    x = Rover.read_csv("test/support/data.csv", headers: %w(y x0 x1 x2 x3))
+    y = x.delete("y")
 
     model = XLearn::Linear.new(task: "reg")
     model.fit(x, y, eval_set: [x, y])
-    assert_elements_in_delta y, model.predict(x), 0.1
+    # TODO check against expected predictions
+    assert_elements_in_delta y, model.predict(x), 1
   end
 
   def teardown
