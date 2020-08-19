@@ -1,12 +1,6 @@
 module XLearn
   class FM < Model
-    def initialize(
-      task: "binary", metric: "auc", block_size: 500,
-      lr: 0.2, k: 4, lambda: 0.1, init: 0.1, fold: 1, epoch: 5, stop_window: 2,
-      opt: "sgd", nthread: 4, alpha: 1, beta: 1, lambda_1: 1, lambda_2: 1,
-      seed: 1
-    )
-
+    def initialize(**options)
       @model_type = "fm"
       super
     end
