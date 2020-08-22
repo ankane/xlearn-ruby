@@ -1,4 +1,4 @@
-## 0.1.5 (unreleased)
+## 0.1.5 (2020-08-22)
 
 - Added support for Rover
 - Improved error message when not fit

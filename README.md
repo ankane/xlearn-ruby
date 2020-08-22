@@ -135,7 +135,7 @@ Or a Numo array
 Numo::NArray.cast([[1, 2, 3], [4, 5, 6]])
 ```
 
-Or a Rover data frame [master]
+Or a Rover data frame
 
 ```ruby
 Rover.read_csv("houses.csv")
