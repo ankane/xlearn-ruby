@@ -1,4 +1,4 @@
-# xLearn
+# xLearn Ruby
 
 [xLearn](https://github.com/aksnzhy/xlearn) - the high performance machine learning library - for Ruby
 
@@ -8,7 +8,7 @@ Supports:
 - Factorization machines
 - Field-aware factorization machines
 
-[![Build Status](https://github.com/ankane/xlearn/workflows/build/badge.svg?branch=master)](https://github.com/ankane/xlearn/actions)
+[![Build Status](https://github.com/ankane/xlearn-ruby/workflows/build/badge.svg?branch=master)](https://github.com/ankane/xlearn-ruby/actions)
 
 ## Installation
 
@@ -191,22 +191,22 @@ This library is modeled after xLearn’s [Scikit-learn API](https://xlearn-doc.r
 
 ## History
 
-View the [changelog](https://github.com/ankane/xlearn/blob/master/CHANGELOG.md)
+View the [changelog](https://github.com/ankane/xlearn-ruby/blob/master/CHANGELOG.md)
 
 ## Contributing
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-- [Report bugs](https://github.com/ankane/xlearn/issues)
-- Fix bugs and [submit pull requests](https://github.com/ankane/xlearn/pulls)
+- [Report bugs](https://github.com/ankane/xlearn-ruby/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/xlearn-ruby/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
-To get started with development and testing:
+To get started with development:
 
 ```sh
-git clone https://github.com/ankane/xlearn.git
-cd xlearn
+git clone https://github.com/ankane/xlearn-ruby.git
+cd xlearn-ruby
 bundle install
 bundle exec rake vendor:all
 bundle exec rake test

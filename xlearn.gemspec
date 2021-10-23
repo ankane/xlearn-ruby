@@ -4,11 +4,11 @@ Gem::Specification.new do |spec|
   spec.name          = "xlearn"
   spec.version       = XLearn::VERSION
   spec.summary       = "High performance factorization machines for Ruby"
-  spec.homepage      = "https://github.com/ankane/xlearn"
+  spec.homepage      = "https://github.com/ankane/xlearn-ruby"
   spec.license       = "Apache-2.0"
 
   spec.author        = "Andrew Kane"
-  spec.email         = "andrew@chartkick.com"
+  spec.email         = "andrew@ankane.org"
 
   spec.files         = Dir["*.{md,txt}", "{lib,vendor}/**/*"]
   spec.require_path  = "lib"
