@@ -15,7 +15,7 @@ Supports:
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'xlearn'
+gem "xlearn"
 ```
 
 ## Getting Started
